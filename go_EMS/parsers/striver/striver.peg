@@ -122,7 +122,7 @@ Atomic <- TRUE _?                   { return TrueExpr,nil }
         / e:StreamExpr              { return NewStreamOffsetExpr(e),nil }
 	/ t:TimeExpr                { return NewTimeExpr(t),nil }
         / k:ConstExpr               { return NewConstExpr(k),nil }
-        / l:NumLiteral              { return NewNumericExpr(l),nil }
+        / l:NumLiteral _?           { return NewNumericExpr(l),nil }
 
 StreamExpr <-
      n:Name "(~" _? t:TimeExpr   ")" _? { return NewPrevEqValExpr(n,t),nil  }
